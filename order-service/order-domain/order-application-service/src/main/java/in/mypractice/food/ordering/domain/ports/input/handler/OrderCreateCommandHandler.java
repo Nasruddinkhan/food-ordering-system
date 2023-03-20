@@ -4,6 +4,7 @@ package in.mypractice.food.ordering.domain.ports.input.handler;
 import in.mypractice.food.ordering.domain.dto.create.CreateOrderCommand;
 import in.mypractice.food.ordering.domain.dto.create.CreateOrderResponse;
 import in.mypractice.food.ordering.domain.mapper.OrderDataMapper;
+import in.mypractice.food.ordering.domain.ports.output.message.publisher.ApplicationDomainEventPublisher;
 import in.mypractice.food.ordering.domain.ports.output.repository.CustomerRepository;
 import in.mypractice.food.ordering.domain.ports.output.repository.OrderRepository;
 import in.mypractice.food.ordering.domain.ports.output.repository.RestaurantRepository;
@@ -30,6 +31,8 @@ public class OrderCreateCommandHandler {
 
     private final OrderDataMapper orderDataMapper;
 
+    private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
+
     @Transactional
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
@@ -37,6 +40,8 @@ public class OrderCreateCommandHandler {
         var order = orderDataMapper.createOrder(createOrderCommand);
         var orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         var saveOrder = saveOrder(order);
+        applicationDomainEventPublisher.publish(orderCreatedEvent);
+
         return orderDataMapper.createOrderResponse(saveOrder);
     }
 
