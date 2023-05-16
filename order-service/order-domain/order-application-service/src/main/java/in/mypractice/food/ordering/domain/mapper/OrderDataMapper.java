@@ -3,6 +3,7 @@ package in.mypractice.food.ordering.domain.mapper;
 import in.mypractice.food.ordering.domain.dto.create.CreateOrderCommand;
 import in.mypractice.food.ordering.domain.dto.create.CreateOrderResponse;
 import in.mypractice.food.ordering.domain.dto.create.OrderAddress;
+import in.mypractice.food.ordering.domain.dto.track.TrackOrderResponse;
 import in.mypractice.food.ordering.domain.valueobject.CustomerId;
 import in.mypractice.food.ordering.domain.valueobject.Money;
 import in.mypractice.food.ordering.domain.valueobject.ProductId;
@@ -51,10 +52,19 @@ public class OrderDataMapper {
      return    new StreetAddress(UUID.randomUUID(), address.getCity(), address.getPostalCode(), address.getStreet());
     }
 
-    public CreateOrderResponse createOrderResponse(Order order){
+    public CreateOrderResponse createOrderResponse(Order order, String message){
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
+                .message(message)
                 .orderStatus(order.getOrderStatus())
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus() )
+                .failureMessages(order.getFailureMessage() )
                 .build();
     }
 }
