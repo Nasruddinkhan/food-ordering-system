@@ -13,7 +13,6 @@ import in.mypractice.food.ordering.service.entity.OrderItem;
 import in.mypractice.food.ordering.service.entity.Product;
 import in.mypractice.food.ordering.service.entity.Restaurant;
 import in.mypractice.food.ordering.service.valueobject.StreetAddress;
-import in.mypractice.food.ordering.service.valueobject.TrackingId;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

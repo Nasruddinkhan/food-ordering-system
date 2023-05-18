@@ -70,7 +70,7 @@ public class Order extends AggregateRoot<OrderId> {
        }).reduce(Money.ZERO,Money::add );
         if(!price.equals(orderItemTotal)) {
             throw new OrderDomainException("Total price: " + price.getAmount()
-                + "is not equals to order item total: "+ orderItemTotal.getAmount()+"!");
+                + " is not equals to order item total: "+ orderItemTotal.getAmount()+"!");
         }
 
     }
@@ -82,7 +82,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     }
     private void validateTotalPrice() {
-        if (price == null || price.isGreaterThanZero())
+        if (price == null || !price.isGreaterThanZero())
             throw new OrderDomainException("total price must be greater than zero");
 
     }
