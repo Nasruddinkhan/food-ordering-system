@@ -36,4 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/docker-compose/volumes/zookeeper/data/version-2/
+/docker-compose/volumes/zookeeper/
+/docker-compose/volumes/kafka/

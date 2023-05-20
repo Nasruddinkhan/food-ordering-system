@@ -163,5 +163,3 @@ mvnw.cmd
 /order-service/order-dataaccess/target/*
 /order-service/order-container/target/**
 /order-service/order-application/target/*
-/infrastructure/docker-compose/volumes/zookeeper/data/myid
-/infrastructure/docker-compose/volumes/zookeeper/transactions/version-2/
