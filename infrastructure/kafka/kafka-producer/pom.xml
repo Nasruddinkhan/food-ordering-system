@@ -35,6 +35,7 @@
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
+            <version>${spring-kafka-serilizer-version}</version>
         </dependency>
     </dependencies>
 </project>
