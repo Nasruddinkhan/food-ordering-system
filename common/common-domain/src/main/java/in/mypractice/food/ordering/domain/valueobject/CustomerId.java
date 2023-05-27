@@ -3,7 +3,7 @@ package in.mypractice.food.ordering.domain.valueobject;
 import java.util.UUID;
 
 public class CustomerId extends BaseId<UUID> {
-    public CustomerId(UUID value) {
+    public  CustomerId(UUID value) {
         super(value);
     }
 }

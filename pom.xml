@@ -52,6 +52,11 @@
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
+                <artifactId>common-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>order-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
