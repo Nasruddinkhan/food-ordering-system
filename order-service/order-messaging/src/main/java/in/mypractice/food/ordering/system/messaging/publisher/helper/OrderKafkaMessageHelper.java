@@ -11,17 +11,17 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @Slf4j
 public class OrderKafkaMessageHelper {
 
-    public ListenableFutureCallback<SendResult<String, PaymentRequestAvroModel>> getKafkaCallBack(String paymentResponseTopicName, PaymentRequestAvroModel paymentRequestAvroModel) {
-        return new ListenableFutureCallback<SendResult<String, PaymentRequestAvroModel>>() {
+    public <T> ListenableFutureCallback<SendResult<String, T>> getKafkaCallBack(String responseTopicName, T requestAvroModel, String orderId, String requestAvroModelName) {
+        return new ListenableFutureCallback<SendResult<String, T>>() {
             @Override
             public void onFailure(Throwable ex) {
-                log.error("Error while sending PaymentRequestAvroModel "+ "message {} to topic {}", paymentRequestAvroModel.toString(), paymentResponseTopicName, ex);
+                log.error("Error while sending "+ requestAvroModelName+ "message {} to topic {}", requestAvroModel.toString(), responseTopicName, ex);
             }
             @Override
-            public void onSuccess(SendResult<String, PaymentRequestAvroModel> result) {
+            public void onSuccess(SendResult<String, T> result) {
                 RecordMetadata metadata = result.getRecordMetadata();
                 log.info("Received successful response from kafka from order id: {} "+ "Topic: {} Partition: {} Offset: {} Timestamp: {}",
-                        paymentRequestAvroModel.getOrderId(), metadata.topic(), metadata.partition(), metadata.offset(),metadata.timestamp());
+                        orderId, metadata.topic(), metadata.partition(), metadata.offset(),metadata.timestamp());
 
             }
         };

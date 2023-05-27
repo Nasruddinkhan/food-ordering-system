@@ -8,10 +8,7 @@ import in.mypractice.food.ordering.system.messaging.publisher.helper.OrderKafkaM
 import in.mypractice.foot.ordering.system.kafka.producer.service.KafkaProducer;
 import in.mypractice.foot.ordering.system.order.avro.model.PaymentRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Slf4j
 @Component
@@ -37,7 +34,7 @@ public class CancelOrderKafkaMessagePublisher implements OrderCancelledPaymentRe
         try {
             PaymentRequestAvroModel paymentRequestAvroModel = orderMessagingDataMapper.orderCancelEventToPaymentRequestAvroModel(cancelledEvent);
             kafkaProducer.send(orderServiceConfigData.getPaymentRequestTopicName(), orderId, paymentRequestAvroModel,
-                    orderKafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getPaymentResponseTopicName(), paymentRequestAvroModel));
+                    orderKafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getPaymentResponseTopicName(), paymentRequestAvroModel, paymentRequestAvroModel.getOrderId(), "PaymentRequestAvroModel"));
             log.info("PaymentRequestAvroModel sent to kafka for orderId : {]", paymentRequestAvroModel.getOrderId());
         } catch (Exception e) {
             log.error("Error while sending PaymentRequestAvroModel message to kafka with order id: {}, error: {}", orderId, e.getMessage());
