@@ -5,31 +5,23 @@
     "fields": [
         {
             "name": "id",
-            "type": {
-                "type": "string",
-                "logicalType": "uuid"
-            }
+            "type": "string",
+            "default": "default_id"
         },
         {
             "name": "sagaId",
-            "type": {
-                "type": "string",
-                "logicalType": "uuid"
-            }
+            "type": "string",
+            "default": "default_sagaId"
         },
         {
             "name": "customerId",
-            "type": {
-                "type": "string",
-                "logicalType": "uuid"
-            }
+            "type": "string",
+            "default": "default_customerId"
         },
         {
             "name": "orderId",
-            "type": {
-                "type": "string",
-                "logicalType": "uuid"
-            }
+            "type": "string",
+            "default": "default_orderId"
         },
         {
             "name": "price",
@@ -50,10 +42,11 @@
         {
             "name": "paymentOrderStatus",
             "type": {
-                  "type": "enum",
-                  "name": "PaymentOrderStatus",
-                  "symbols": ["PENDING", "CANCELLED"]
-               }
+                "type": "enum",
+                "name": "PaymentOrderStatus",
+                "symbols": ["PENDING", "CANCELLED"]
+            },
+            "default": "PENDING"
         }
     ]
 }
