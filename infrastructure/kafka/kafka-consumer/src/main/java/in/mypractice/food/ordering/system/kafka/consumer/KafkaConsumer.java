@@ -1,4 +1,4 @@
-package in.mypractice.food.ordering.system.kafka.consumer.config;
+package in.mypractice.food.ordering.system.kafka.consumer;
 
 import org.apache.avro.specific.SpecificRecordBase;
 

@@ -1,4 +1,4 @@
-package in.mypractice.food.ordering.system.kafka.consumer;
+package in.mypractice.food.ordering.system.kafka.consumer.config;
 
 import in.mypractice.food.ordering.system.config.data.KafkaConfigData;
 import in.mypractice.food.ordering.system.config.data.KafkaConsumerConfigData;
