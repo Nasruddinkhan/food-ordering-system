@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, UUID> {
-    Optional<OrderEntity> findByTracking(UUID trackingId);
+    Optional<OrderEntity> findByTrackingId(UUID trackingId);
 }

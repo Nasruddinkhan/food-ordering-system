@@ -5,7 +5,7 @@ docker-compose -f common.yml -f zookeeper.yml up
 echo ruok | nc localhost 2181
 
 # 3. Run the kafka cluster using below command
-echo ruok | nc localhost 2181
+docker-compose -f kafka_cluster.yml -f common.yml up
 
 # 4. Create the topic by using below command
 docker-compose -f init_kafka.yml -f common.yml up

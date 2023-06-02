@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>in.mypractice.foot.ordering.system</groupId>
+    <groupId>in.mypractice.food.ordering.system</groupId>
     <artifactId>infrastructure</artifactId>
     <packaging>pom</packaging>
     <modules>

@@ -1,6 +1,6 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.order.entity;
 
-import in.mypractice.food.ordering.domain.valueobject.OrderStatus;
+import in.mypractice.food.ordering.system.domain.valueobject.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +26,7 @@ public class OrderEntity {
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-    private String failureMessage;
+    private String failureMessages;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private OrderAddressEntity address;

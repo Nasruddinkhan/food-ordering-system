@@ -1,7 +1,7 @@
 package in.mypractice.food.ordering.service.entity;
 
-import in.mypractice.food.ordering.domain.entity.AggregateRoot;
-import in.mypractice.food.ordering.domain.valueobject.CustomerId;
+import in.mypractice.food.ordering.system.domain.entity.AggregateRoot;
+import in.mypractice.food.ordering.system.domain.valueobject.CustomerId;
 
 public class Customer extends AggregateRoot<CustomerId> {
     public Customer(){}

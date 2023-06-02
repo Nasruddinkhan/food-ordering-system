@@ -1,5 +1,5 @@
 {
-    "namespace": "in.mypractice.foot.ordering.system.order.avro.model",
+    "namespace": "in.mypractice.food.ordering.system.order.avro.model",
     "type": "record",
     "name": "RestaurantApprovalRequestAvroModel",
     "fields": [

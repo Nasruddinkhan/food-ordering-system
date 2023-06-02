@@ -1,6 +1,6 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.order.adapter;
 
-import in.mypractice.food.ordering.domain.ports.output.repository.OrderRepository;
+import in.mypractice.food.ordering.system.domain.ports.output.repository.OrderRepository;
 import in.mypractice.food.ordering.service.entity.Order;
 import in.mypractice.food.ordering.service.valueobject.TrackingId;
 import in.mypractice.food.ordering.system.order.service.dataaccess.order.mapper.OrderDataAccessMapper;
@@ -23,7 +23,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Optional<Order> findByTrackingId(TrackingId trackingId) {
-        return orderJpaRepository.findByTracking(trackingId.getValue())
+        return orderJpaRepository.findByTrackingId(trackingId.getValue())
                 .map(orderDataAccessMapper::orderEntityToOrder);
     }
 }

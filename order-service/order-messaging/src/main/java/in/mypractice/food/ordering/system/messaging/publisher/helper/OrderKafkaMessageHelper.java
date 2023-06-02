@@ -1,6 +1,5 @@
 package in.mypractice.food.ordering.system.messaging.publisher.helper;
 
-import in.mypractice.foot.ordering.system.order.avro.model.PaymentRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.support.SendResult;

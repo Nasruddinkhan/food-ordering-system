@@ -1,14 +1,12 @@
 package in.mypractice.food.ordering.system.messaging.publisher;
 
-import in.mypractice.food.ordering.domain.config.OrderServiceConfigData;
-import in.mypractice.food.ordering.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
-import in.mypractice.food.ordering.service.event.OrderCreatedEvent;
+import in.mypractice.food.ordering.system.domain.config.OrderServiceConfigData;
+import in.mypractice.food.ordering.system.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
 import in.mypractice.food.ordering.service.event.OrderPaidEvent;
 import in.mypractice.food.ordering.system.messaging.mapper.OrderMessagingDataMapper;
 import in.mypractice.food.ordering.system.messaging.publisher.helper.OrderKafkaMessageHelper;
-import in.mypractice.foot.ordering.system.kafka.producer.service.KafkaProducer;
-import in.mypractice.foot.ordering.system.order.avro.model.PaymentRequestAvroModel;
-import in.mypractice.foot.ordering.system.order.avro.model.RestaurantApprovalRequestAvroModel;
+import in.mypractice.food.ordering.system.kafka.producer.service.KafkaProducer;
+import in.mypractice.food.ordering.system.order.avro.model.RestaurantApprovalRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

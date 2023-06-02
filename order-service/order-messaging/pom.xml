@@ -19,15 +19,15 @@
             <artifactId>order-application-service</artifactId>
         </dependency>
         <dependency>
-            <groupId>in.mypractice.foot.ordering.system</groupId>
+            <groupId>in.mypractice.food.ordering.system</groupId>
             <artifactId>kafka-producer</artifactId>
         </dependency>
         <dependency>
-            <groupId>in.mypractice.foot.ordering.system</groupId>
+            <groupId>in.mypractice.food.ordering.system</groupId>
             <artifactId>kafka-consumer</artifactId>
         </dependency>
         <dependency>
-            <groupId>in.mypractice.foot.ordering.system</groupId>
+            <groupId>in.mypractice.food.ordering.system</groupId>
             <artifactId>kafka-model</artifactId>
         </dependency>
     </dependencies>

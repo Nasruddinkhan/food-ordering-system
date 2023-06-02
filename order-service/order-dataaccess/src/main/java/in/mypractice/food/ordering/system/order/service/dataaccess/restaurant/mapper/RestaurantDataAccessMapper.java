@@ -1,8 +1,8 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.restaurant.mapper;
 
-import in.mypractice.food.ordering.domain.valueobject.Money;
-import in.mypractice.food.ordering.domain.valueobject.ProductId;
-import in.mypractice.food.ordering.domain.valueobject.RestaurantId;
+import in.mypractice.food.ordering.system.domain.valueobject.Money;
+import in.mypractice.food.ordering.system.domain.valueobject.ProductId;
+import in.mypractice.food.ordering.system.domain.valueobject.RestaurantId;
 import in.mypractice.food.ordering.service.entity.Product;
 import in.mypractice.food.ordering.service.entity.Restaurant;
 import in.mypractice.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntity;

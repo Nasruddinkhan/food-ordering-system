@@ -1,13 +1,13 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.order.mapper;
 
 
-import in.mypractice.food.ordering.domain.valueobject.*;
 import in.mypractice.food.ordering.service.entity.Order;
 import in.mypractice.food.ordering.service.entity.OrderItem;
 import in.mypractice.food.ordering.service.entity.Product;
 import in.mypractice.food.ordering.service.valueobject.OrderItemId;
 import in.mypractice.food.ordering.service.valueobject.StreetAddress;
 import in.mypractice.food.ordering.service.valueobject.TrackingId;
+import in.mypractice.food.ordering.system.domain.valueobject.*;
 import in.mypractice.food.ordering.system.order.service.dataaccess.order.entity.OrderAddressEntity;
 import in.mypractice.food.ordering.system.order.service.dataaccess.order.entity.OrderEntity;
 import in.mypractice.food.ordering.system.order.service.dataaccess.order.entity.OrderItemEntity;
@@ -30,7 +30,7 @@ public class OrderDataAccessMapper {
                 .price(order.getPrice().getAmount())
                 .items(orderItemToOrderItemEntities(order.getItems()))
                 .orderStatus(order.getOrderStatus())
-                .failureMessage(order.getFailureMessage() != null ? String.join(FAILURE_MESSAGE_DELIMITER, order.getFailureMessage()):"" )
+                .failureMessages(order.getFailureMessage() != null ? String.join(FAILURE_MESSAGE_DELIMITER, order.getFailureMessage()):"" )
                 .build();
         orderEntity.getAddress().setOrder(orderEntity);
         orderEntity.getItems().forEach(orderItemEntity -> orderItemEntity.setOrder(orderEntity));
@@ -47,7 +47,7 @@ public class OrderDataAccessMapper {
                 .items(orderItemEntitiesToOrderItems(orderEntity.getItems()))
                 .trackingId(new TrackingId(orderEntity.getTrackingId()))
                 .orderStatus(orderEntity.getOrderStatus())
-                .failureMessage(orderEntity.getFailureMessage().isEmpty() ? List.of(): List.of(orderEntity.getFailureMessage().split(FAILURE_MESSAGE_DELIMITER)))
+                .failureMessage(orderEntity.getFailureMessages().isEmpty() ? List.of(): List.of(orderEntity.getFailureMessages().split(FAILURE_MESSAGE_DELIMITER)))
                 .build();
     }
 

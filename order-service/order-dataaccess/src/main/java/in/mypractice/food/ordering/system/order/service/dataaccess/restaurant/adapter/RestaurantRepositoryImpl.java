@@ -1,14 +1,12 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.restaurant.adapter;
 
-import in.mypractice.food.ordering.domain.ports.output.repository.RestaurantRepository;
+import in.mypractice.food.ordering.system.domain.ports.output.repository.RestaurantRepository;
 import in.mypractice.food.ordering.service.entity.Restaurant;
 import in.mypractice.food.ordering.system.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
 import in.mypractice.food.ordering.system.order.service.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class RestaurantRepositoryImpl implements RestaurantRepository {

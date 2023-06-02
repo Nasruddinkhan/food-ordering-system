@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order_restaurant_m_view", schema = "customer")
+@Table(name = "order_restaurant_m_view", schema = "restaurant")
 @Getter
 @Builder
 @Setter

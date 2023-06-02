@@ -1,17 +1,20 @@
 package in.mypractice.food.ordering.system.messaging.mapper;
 
-import in.mypractice.food.ordering.domain.dto.message.PaymentResponse;
-import in.mypractice.food.ordering.domain.dto.message.RestaurantApprovalResponse;
-import in.mypractice.food.ordering.domain.valueobject.OrderApprovalStatus;
-import in.mypractice.food.ordering.domain.valueobject.PaymentStatus;
+import in.mypractice.food.ordering.system.domain.dto.message.PaymentResponse;
+import in.mypractice.food.ordering.system.domain.dto.message.RestaurantApprovalResponse;
+import in.mypractice.food.ordering.system.domain.valueobject.OrderApprovalStatus;
+import in.mypractice.food.ordering.system.domain.valueobject.PaymentStatus;
 import in.mypractice.food.ordering.service.entity.Order;
 import in.mypractice.food.ordering.service.event.OrderCancelledEvent;
 import in.mypractice.food.ordering.service.event.OrderCreatedEvent;
 import in.mypractice.food.ordering.service.event.OrderPaidEvent;
-import in.mypractice.foot.ordering.system.order.avro.model.*;
+import in.mypractice.food.ordering.system.order.avro.model.*;
+import in.mypractice.food.ordering.system.order.avro.model.*;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class OrderMessagingDataMapper {
     public PaymentRequestAvroModel orderCreatedEventToPaymentRequestAvroModel(OrderCreatedEvent orderCreatedEvent) {
         Order order = orderCreatedEvent.getOrder();

@@ -1,6 +1,6 @@
 package in.mypractice.food.ordering.service.event;
 
-import in.mypractice.food.ordering.domain.events.DomainEvent;
+import in.mypractice.food.ordering.system.domain.events.DomainEvent;
 import in.mypractice.food.ordering.service.entity.Order;
 
 import java.time.ZonedDateTime;

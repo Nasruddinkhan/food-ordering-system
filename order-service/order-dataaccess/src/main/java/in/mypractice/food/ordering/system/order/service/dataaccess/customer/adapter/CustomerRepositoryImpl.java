@@ -1,6 +1,6 @@
 package in.mypractice.food.ordering.system.order.service.dataaccess.customer.adapter;
 
-import in.mypractice.food.ordering.domain.ports.output.repository.CustomerRepository;
+import in.mypractice.food.ordering.system.domain.ports.output.repository.CustomerRepository;
 import in.mypractice.food.ordering.service.entity.Customer;
 import in.mypractice.food.ordering.system.order.service.dataaccess.customer.mapper.CustomerDataMapper;
 import in.mypractice.food.ordering.system.order.service.dataaccess.customer.repository.CustomerJpaRepository;
@@ -20,7 +20,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public Optional<Customer> findCustomer(UUID uuid) {
-        return customerJpaRepository.findById(uuid).map(customerDataMapper::customerEntityToCustomer);
+    public Optional<Customer> findCustomer(UUID customerId) {
+        return customerJpaRepository.findById(customerId).map(customerDataMapper::customerEntityToCustomer);
     }
 }

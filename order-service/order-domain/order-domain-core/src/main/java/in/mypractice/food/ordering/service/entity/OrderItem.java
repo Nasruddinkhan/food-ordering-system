@@ -1,11 +1,9 @@
 package in.mypractice.food.ordering.service.entity;
 
-import in.mypractice.food.ordering.domain.entity.BaseEntity;
-import in.mypractice.food.ordering.domain.valueobject.Money;
-import in.mypractice.food.ordering.domain.valueobject.OrderId;
+import in.mypractice.food.ordering.system.domain.entity.BaseEntity;
+import in.mypractice.food.ordering.system.domain.valueobject.Money;
+import in.mypractice.food.ordering.system.domain.valueobject.OrderId;
 import in.mypractice.food.ordering.service.valueobject.OrderItemId;
-
-import java.util.UUID;
 
 public class OrderItem  extends BaseEntity<OrderItemId> {
     private  OrderId orderId;

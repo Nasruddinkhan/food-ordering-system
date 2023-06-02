@@ -1,8 +1,8 @@
 package in.mypractice.food.ordering.service.entity;
 
-import in.mypractice.food.ordering.domain.entity.BaseEntity;
-import in.mypractice.food.ordering.domain.valueobject.Money;
-import in.mypractice.food.ordering.domain.valueobject.ProductId;
+import in.mypractice.food.ordering.system.domain.entity.BaseEntity;
+import in.mypractice.food.ordering.system.domain.valueobject.Money;
+import in.mypractice.food.ordering.system.domain.valueobject.ProductId;
 
 public class Product extends BaseEntity<ProductId> {
     private String name;

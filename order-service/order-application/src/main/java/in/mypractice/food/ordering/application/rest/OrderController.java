@@ -1,11 +1,11 @@
 package in.mypractice.food.ordering.application.rest;
 
 
-import in.mypractice.food.ordering.domain.dto.create.CreateOrderCommand;
-import in.mypractice.food.ordering.domain.dto.create.CreateOrderResponse;
-import in.mypractice.food.ordering.domain.dto.track.TrackOrderQuery;
-import in.mypractice.food.ordering.domain.dto.track.TrackOrderResponse;
-import in.mypractice.food.ordering.domain.ports.input.service.OrderApplicationService;
+import in.mypractice.food.ordering.system.domain.dto.create.CreateOrderCommand;
+import in.mypractice.food.ordering.system.domain.dto.create.CreateOrderResponse;
+import in.mypractice.food.ordering.system.domain.dto.track.TrackOrderQuery;
+import in.mypractice.food.ordering.system.domain.dto.track.TrackOrderResponse;
+import in.mypractice.food.ordering.system.domain.ports.input.service.OrderApplicationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

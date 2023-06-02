@@ -17,6 +17,7 @@
         <module>order-service</module>
         <module>common</module>
         <module>infrastructure</module>
+        <module>customer-service</module>
     </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -66,22 +67,22 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>in.mypractice.foot.ordering.system</groupId>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>kafka-producer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>in.mypractice.foot.ordering.system</groupId>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>kafka-consumer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>in.mypractice.foot.ordering.system</groupId>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>kafka-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>in.mypractice.foot.ordering.system</groupId>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>kafka-config-data</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -104,6 +105,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
