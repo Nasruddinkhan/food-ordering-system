@@ -38,3 +38,4 @@ build/
 .DS_Store
 /docker-compose/volumes/zookeeper/
 /docker-compose/volumes/kafka/
+/docker-compose/volumes/mysql/data/
