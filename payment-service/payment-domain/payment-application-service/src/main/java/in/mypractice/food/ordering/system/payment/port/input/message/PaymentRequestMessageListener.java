@@ -1,4 +1,4 @@
-package in.mypractice.food.ordering.system.payment.port.input.message.listener;
+package in.mypractice.food.ordering.system.payment.port.input.message;
 
 import in.mypractice.food.ordering.system.payment.dto.PaymentRequest;
 
