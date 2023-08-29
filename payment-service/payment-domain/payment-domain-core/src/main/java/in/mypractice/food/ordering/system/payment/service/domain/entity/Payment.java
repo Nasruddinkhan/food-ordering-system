@@ -80,8 +80,23 @@ public class Payment extends AggregateRoot<PaymentId> {
         public Builder() {
         }
 
+        public Builder customerId(CustomerId val) {
+            customerId = val;
+            return this;
+        }
+
         public Builder paymentId(PaymentId val) {
             paymentId = val;
+            return this;
+        }
+
+        public Builder price(Money val) {
+            price = val;
+            return this;
+        }
+
+        public Builder orderId(OrderId val) {
+            orderId = val;
             return this;
         }
 

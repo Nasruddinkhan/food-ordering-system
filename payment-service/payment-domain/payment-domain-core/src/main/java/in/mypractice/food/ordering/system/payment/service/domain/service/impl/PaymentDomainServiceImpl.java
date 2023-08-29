@@ -39,7 +39,6 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             log.error("Payment initiation is failed for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
             return new PaymentFailedEvent(payment, failureMessages, ZonedDateTime.now(ZoneId.of(UTC)));
-
         }
     }
 
