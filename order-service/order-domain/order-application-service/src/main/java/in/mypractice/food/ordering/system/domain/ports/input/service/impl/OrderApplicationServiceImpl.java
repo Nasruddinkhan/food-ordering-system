@@ -21,12 +21,6 @@ import org.springframework.validation.annotation.Validated;
     private final OrderCreateCommandHandler orderCreateCommandHandler;
     private final OrderTrackCommandHandler orderTrackCommandHandler;
 
-    OrderApplicationServiceImpl(OrderCreateCommandHandler orderCreateCommandHandler, OrderTrackCommandHandler orderTrackCommandHandler) {
-        this.orderCreateCommandHandler = orderCreateCommandHandler;
-        this.orderTrackCommandHandler = orderTrackCommandHandler;
-    }
-
-
     @Override
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         return orderCreateCommandHandler.createOrder(createOrderCommand);

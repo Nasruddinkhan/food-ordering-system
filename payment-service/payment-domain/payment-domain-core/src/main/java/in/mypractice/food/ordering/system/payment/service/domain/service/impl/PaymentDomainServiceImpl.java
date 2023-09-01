@@ -1,5 +1,6 @@
 package in.mypractice.food.ordering.system.payment.service.domain.service.impl;
 
+import in.mypractice.food.ordering.system.domain.events.publisher.DomainEventPublisher;
 import in.mypractice.food.ordering.system.domain.valueobject.Money;
 import in.mypractice.food.ordering.system.domain.valueobject.PaymentStatus;
 import in.mypractice.food.ordering.system.payment.service.domain.entity.CreditEntry;
@@ -24,7 +25,12 @@ import static in.mypractice.food.ordering.system.domain.constants.DomainConstant
 @Slf4j
 public class PaymentDomainServiceImpl implements PaymentDomainService {
     @Override
-    public PaymentEvent validateAndInitiatePayment(Payment payment, CreditEntry creditEntry, List<CreditHistory> creditHistories, List<String> failureMessages) {
+    public PaymentEvent validateAndInitiatePayment(Payment payment,
+                                                   CreditEntry creditEntry,
+                                                   List<CreditHistory> creditHistories,
+                                                   List<String> failureMessages,
+                                                   DomainEventPublisher<PaymentCompeteEvent> eventPublisher,
+                                                   DomainEventPublisher<PaymentFailedEvent> eventFailedPublisher) {
         payment.validatePayment(failureMessages);
         payment.initializationPayment();
         validateCreditEntry(payment, creditEntry, failureMessages);
@@ -34,28 +40,34 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
         if (failureMessages.isEmpty()) {
             log.error("Payment is initiated for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.COMPLETED);
-            return new PaymentCompeteEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
+            return new PaymentCompeteEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), eventPublisher);
         } else {
             log.error("Payment initiation is failed for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
-            return new PaymentFailedEvent(payment, failureMessages, ZonedDateTime.now(ZoneId.of(UTC)));
+            return new PaymentFailedEvent(payment, failureMessages, ZonedDateTime.now(ZoneId.of(UTC)), eventFailedPublisher);
         }
     }
 
 
     @Override
-    public PaymentEvent validateAndCancelPayment(Payment payment, CreditEntry creditEntry, List<CreditHistory> creditHistories, List<String> failureMessages) {
+    public PaymentEvent validateAndCancelPayment(Payment payment,
+                                                 CreditEntry creditEntry,
+                                                 List<CreditHistory> creditHistories,
+                                                 List<String> failureMessages,
+                                                 DomainEventPublisher<PaymentCancelledEvent> eventPublisher,
+                                                 DomainEventPublisher<PaymentFailedEvent> failEventPublisher
+    ) {
         payment.validatePayment(failureMessages);
         addCreditEntry(payment, creditEntry);
         updateCreditHistory(payment, creditHistories, TransactionType.CREDIT);
         if (failureMessages.isEmpty()) {
             log.info("Payment is cancelled for order id :{}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.CANCELLED);
-            return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
+            return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), eventPublisher);
         } else {
             log.error("Payment cancelled is failed for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
-            return new PaymentFailedEvent(payment, failureMessages, ZonedDateTime.now(ZoneId.of(UTC)));
+            return new PaymentFailedEvent(payment, failureMessages, ZonedDateTime.now(ZoneId.of(UTC)), failEventPublisher);
 
         }
     }

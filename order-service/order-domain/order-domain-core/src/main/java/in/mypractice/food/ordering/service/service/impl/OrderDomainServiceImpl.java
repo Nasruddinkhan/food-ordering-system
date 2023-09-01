@@ -7,43 +7,46 @@ import in.mypractice.food.ordering.service.event.OrderCreatedEvent;
 import in.mypractice.food.ordering.service.event.OrderPaidEvent;
 import in.mypractice.food.ordering.service.exception.OrderDomainException;
 import in.mypractice.food.ordering.service.service.OrderDomainService;
+import in.mypractice.food.ordering.system.domain.events.publisher.DomainEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
     @Override
-    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<OrderCreatedEvent> eventPublisher) {
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
         order.initializeOrder();
         log.info("order with id : {} is initiate", order.getId().getValue());
-        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of("UTC")));
+        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of("UTC")), eventPublisher);
     }
 
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
         order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
-            var currentProduct  = orderItem.getProduct();
-            if (currentProduct.equals(restaurantProduct)){
+            var currentProduct = orderItem.getProduct();
+            if (currentProduct.equals(restaurantProduct)) {
                 currentProduct.updateWithConfirmNameAndPrice(restaurantProduct.getName(), restaurantProduct.getPrice());
             }
         }));
     }
 
     private void validateRestaurant(Restaurant restaurant) {
-        if (!restaurant.isActive()) throw new OrderDomainException("restaurant with id "+ restaurant.getId().getValue()+
-                " is currently not active");
+        if (!restaurant.isActive())
+            throw new OrderDomainException("restaurant with id " + restaurant.getId().getValue() +
+                    " is currently not active");
 
     }
 
     @Override
-    public OrderPaidEvent payOrder(Order order) {
+    public OrderPaidEvent payOrder(Order order, DomainEventPublisher<OrderPaidEvent> eventPublisher) {
         order.pay();
         log.info("order with id: {}", order.getId().getValue());
-        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of("UTC")));
+        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of("UTC")), eventPublisher);
     }
 
     @Override
@@ -53,16 +56,16 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     @Override
-    public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessage) {
-        order.initCancel( failureMessage);
+    public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessage, DomainEventPublisher<OrderCancelledEvent> eventPublisher) {
+        order.initCancel(failureMessage);
         log.info("order with id: {}", order.getId().getValue());
-        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of("UTC")));
+        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of("UTC")), eventPublisher);
 
     }
 
     @Override
     public void cancelOrder(Order order, List<String> failureMessage) {
-        order.cancel( failureMessage);
+        order.cancel(failureMessage);
         log.info("order with id: {}", order.getId().getValue());
     }
 }
