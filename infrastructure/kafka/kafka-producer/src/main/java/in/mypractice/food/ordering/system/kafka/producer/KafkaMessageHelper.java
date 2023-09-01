@@ -6,29 +6,43 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.util.function.BiConsumer;
+
 @Slf4j
 @Component
 public class KafkaMessageHelper {
 
-    public <T> ListenableFutureCallback<SendResult<String, T>>
-    getKafkaCallback(String responseTopicName, T avroModel, String orderId, String avroModelName) {
-        return new ListenableFutureCallback<>() {
-            @Override
-            public void onFailure(Throwable ex) {
-                log.error("Error while sending " + avroModelName +
-                        " message {} to topic {}", avroModel.toString(), responseTopicName, ex);
-            }
+//    public <T> ListenableFutureCallback<SendResult<String, T>>
+//    getKafkaCallback(String responseTopicName, T avroModel, String orderId, String avroModelName) {
+//        return new ListenableFutureCallback<>() {
+//            @Override
+//            public void onFailure(Throwable ex) {
+//                log.error("Error while sending " + avroModelName +
+//                        " message {} to topic {}", avroModel.toString(), responseTopicName, ex);
+//            }
+//
+//            @Override
+//            public void onSuccess(SendResult<String, T> result) {
+//                RecordMetadata metadata = result.getRecordMetadata();
+//                log.info("Received successful response from Kafka for order id: {}" +
+//                                " Topic: {} Partition: {} Offset: {} Timestamp: {}",
+//                        orderId,
+//                        metadata.topic(),
+//                        metadata.partition(),
+//                        metadata.offset(),
+//                        metadata.timestamp());
+//            }
+//        };
+//    }
 
-            @Override
-            public void onSuccess(SendResult<String, T> result) {
+    public <T> BiConsumer<SendResult<String, T>, Throwable> getKafkaCallBack(String responseTopicName, T requestAvroModel, String orderId, String requestAvroModelName) {
+        return (result, ex) -> {
+            if (ex != null) {
+                log.error("Error while sending " + requestAvroModelName + " message {} to topic {}", requestAvroModel.toString(), responseTopicName, ex);
+            } else {
                 RecordMetadata metadata = result.getRecordMetadata();
-                log.info("Received successful response from Kafka for order id: {}" +
-                                " Topic: {} Partition: {} Offset: {} Timestamp: {}",
-                        orderId,
-                        metadata.topic(),
-                        metadata.partition(),
-                        metadata.offset(),
-                        metadata.timestamp());
+                log.info("Received successful response from Kafka for order id: {} Topic: {} Partition: {} Offset: {} Timestamp: {}",
+                        orderId, metadata.topic(), metadata.partition(), metadata.offset(), metadata.timestamp());
             }
         };
     }
