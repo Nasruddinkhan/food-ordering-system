@@ -19,6 +19,8 @@
         <module>infrastructure</module>
         <module>customer-service</module>
         <module>payment-service</module>
+        <module>restaurant-service</module>
+        <module>restaurant-service/restaurant-dataaccess</module>
     </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -89,22 +91,22 @@
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
-                <artifactId>payment-domain-core</artifactId>
+                <artifactId>restaurant-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
-                <artifactId>payment-application-service</artifactId>
+                <artifactId>restaurant-application-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
-                <artifactId>payment-dataaccess</artifactId>
+                <artifactId>restaurant-dataaccess</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
-                <artifactId>payment-messaging</artifactId>
+                <artifactId>restaurant-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
