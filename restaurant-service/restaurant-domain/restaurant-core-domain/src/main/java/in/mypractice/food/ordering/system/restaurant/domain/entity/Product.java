@@ -3,13 +3,10 @@ package in.mypractice.food.ordering.system.restaurant.domain.entity;
 import in.mypractice.food.ordering.system.domain.entity.BaseEntity;
 import in.mypractice.food.ordering.system.domain.valueobject.Money;
 import in.mypractice.food.ordering.system.domain.valueobject.ProductId;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
 
-@Getter
-@Builder
-@Data
+import java.util.Objects;
+
+
 public class Product extends BaseEntity<ProductId> {
     private String name;
     private Money price;
@@ -17,8 +14,89 @@ public class Product extends BaseEntity<ProductId> {
     private boolean available;
 
     public void updateWithConfirmedNamePriceAndAvailability(String name, Money price, boolean available) {
-        this.available = available;
         this.name = name;
         this.price = price;
+        this.available = available;
+    }
+
+    private Product(Builder builder) {
+        setId(builder.productId);
+        name = builder.name;
+        price = builder.price;
+        quantity = builder.quantity;
+        available = builder.available;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public static final class Builder {
+        private ProductId productId;
+        private String name;
+        private Money price;
+        private int quantity;
+        private boolean available;
+
+        private Builder() {
+        }
+
+        public Builder productId(ProductId val) {
+            productId = val;
+            return this;
+        }
+
+        public Builder name(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder price(Money val) {
+            price = val;
+            return this;
+        }
+
+        public Builder quantity(int val) {
+            quantity = val;
+            return this;
+        }
+
+        public Builder available(boolean val) {
+            available = val;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product product)) return false;
+        if (!super.equals(o)) return false;
+        return quantity == product.quantity && available == product.available && Objects.equals(name, product.name) && Objects.equals(price, product.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, price, quantity, available);
     }
 }

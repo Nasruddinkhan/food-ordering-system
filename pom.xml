@@ -106,6 +106,12 @@
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
+                <artifactId>restaurant-core-domain</artifactId>
+                <version>${project.version}</version>
+
+            </dependency>
+            <dependency>
+                <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>restaurant-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
