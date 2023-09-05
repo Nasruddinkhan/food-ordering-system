@@ -17,4 +17,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>in.mypractice.food.ordering.system</groupId>
+            <artifactId>restaurant-application-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>in.mypractice.food.ordering.system</groupId>
+            <artifactId>kafka-producer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>in.mypractice.food.ordering.system</groupId>
+            <artifactId>kafka-consumer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>in.mypractice.food.ordering.system</groupId>
+            <artifactId>kafka-model</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
