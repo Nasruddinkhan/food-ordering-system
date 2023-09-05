@@ -112,7 +112,6 @@
                 <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>restaurant-core-domain</artifactId>
                 <version>${project.version}</version>
-
             </dependency>
             <dependency>
                 <groupId>in.mypractice.food.ordering.system</groupId>
@@ -138,6 +137,15 @@
                 <groupId>in.mypractice.food.ordering.system</groupId>
                 <artifactId>kafka-config-data</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>in.mypractice.food.ordering.system</groupId>
+                <artifactId>saga</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>in.mypractice.food.ordering.system</groupId>
+                <artifactId>order-domain</artifactId>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
