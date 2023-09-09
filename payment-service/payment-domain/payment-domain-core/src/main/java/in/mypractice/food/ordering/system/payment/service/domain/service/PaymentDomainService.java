@@ -5,7 +5,7 @@ import in.mypractice.food.ordering.system.payment.service.domain.entity.CreditEn
 import in.mypractice.food.ordering.system.payment.service.domain.entity.CreditHistory;
 import in.mypractice.food.ordering.system.payment.service.domain.entity.Payment;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompeteEvent;
+import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompetedEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 
@@ -16,7 +16,7 @@ public interface PaymentDomainService {
                                             CreditEntry creditEntry,
                                             List<CreditHistory> creditHistories,
                                             List<String> failureMessages,
-                                            DomainEventPublisher<PaymentCompeteEvent> eventPublisher,
+                                            DomainEventPublisher<PaymentCompetedEvent> eventPublisher,
                                             DomainEventPublisher<PaymentFailedEvent> eventFailedPublisher);
 
     PaymentEvent validateAndCancelPayment(Payment payment,

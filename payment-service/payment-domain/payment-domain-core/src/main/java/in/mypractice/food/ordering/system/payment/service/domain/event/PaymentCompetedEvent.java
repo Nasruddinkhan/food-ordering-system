@@ -6,10 +6,10 @@ import in.mypractice.food.ordering.system.payment.service.domain.entity.Payment;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class PaymentCompeteEvent extends PaymentEvent {
-    private final DomainEventPublisher<PaymentCompeteEvent> eventPublisher;
+public class PaymentCompetedEvent extends PaymentEvent {
+    private final DomainEventPublisher<PaymentCompetedEvent> eventPublisher;
 
-    public PaymentCompeteEvent(Payment payment, ZonedDateTime createdAt, DomainEventPublisher<PaymentCompeteEvent> eventPublisher) {
+    public PaymentCompetedEvent(Payment payment, ZonedDateTime createdAt, DomainEventPublisher<PaymentCompetedEvent> eventPublisher) {
         super(payment, List.of(), createdAt);
         this.eventPublisher = eventPublisher;
     }

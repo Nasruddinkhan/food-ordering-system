@@ -25,6 +25,7 @@ public class OrderMessagingDataMapper {
                 .setPrice(order.getPrice().getAmount())
                 .setCreatedAt(orderCreatedEvent.getCreateAt().toInstant())
                 .setPaymentOrderStatus(PaymentOrderStatus.PENDING)
+                .setId(UUID.randomUUID().toString())
                 .build();
     }
 

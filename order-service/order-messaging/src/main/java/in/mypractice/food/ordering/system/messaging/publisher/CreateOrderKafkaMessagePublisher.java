@@ -24,7 +24,7 @@ public class CreateOrderKafkaMessagePublisher implements OrderCreatedPaymentRequ
     @Override
     public void publish(OrderCreatedEvent domainEvent) {
         String orderId = domainEvent.getOrder().getId().getValue().toString();
-        log.info("Received OrderCreatedEvent for orderId : {]", orderId);
+        log.info("Received OrderCreatedEvent for orderId : {}", orderId);
         try {
             PaymentRequestAvroModel paymentRequestAvroModel = orderMessagingDataMapper.orderCreatedEventToPaymentRequestAvroModel(domainEvent);
 

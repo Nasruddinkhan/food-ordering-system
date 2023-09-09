@@ -7,7 +7,7 @@ import in.mypractice.food.ordering.system.payment.service.domain.entity.CreditEn
 import in.mypractice.food.ordering.system.payment.service.domain.entity.CreditHistory;
 import in.mypractice.food.ordering.system.payment.service.domain.entity.Payment;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompeteEvent;
+import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompetedEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.service.PaymentDomainService;
@@ -29,7 +29,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
                                                    CreditEntry creditEntry,
                                                    List<CreditHistory> creditHistories,
                                                    List<String> failureMessages,
-                                                   DomainEventPublisher<PaymentCompeteEvent> eventPublisher,
+                                                   DomainEventPublisher<PaymentCompetedEvent> eventPublisher,
                                                    DomainEventPublisher<PaymentFailedEvent> eventFailedPublisher) {
         payment.validatePayment(failureMessages);
         payment.initializationPayment();
@@ -40,7 +40,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
         if (failureMessages.isEmpty()) {
             log.error("Payment is initiated for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.COMPLETED);
-            return new PaymentCompeteEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), eventPublisher);
+            return new PaymentCompetedEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)), eventPublisher);
         } else {
             log.error("Payment initiation is failed for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);

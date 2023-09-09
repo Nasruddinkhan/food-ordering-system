@@ -6,7 +6,7 @@ import in.mypractice.food.ordering.system.order.avro.model.PaymentResponseAvroMo
 import in.mypractice.food.ordering.system.order.avro.model.PaymentStatus;
 import in.mypractice.food.ordering.system.payment.dto.PaymentRequest;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompeteEvent;
+import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompetedEvent;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +14,13 @@ import java.util.UUID;
 
 @Component
 public class PaymentMessagingDataMapper {
-    public PaymentResponseAvroModel paymentCompleteEventToPaymentAvroModel(PaymentCompeteEvent paymentCompeteEvent) {
+    public PaymentResponseAvroModel paymentCompleteEventToPaymentAvroModel(PaymentCompetedEvent paymentCompeteEvent) {
         return PaymentResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
                 .setCustomerId(paymentCompeteEvent.getPayment().getCustomerId().getValue().toString())
                 .setPaymentId(paymentCompeteEvent.getPayment().getId().getValue().toString())
+                .setOrderId(paymentCompeteEvent.getPayment().getOrderId().getValue().toString())
                 .setPrice(paymentCompeteEvent.getPayment().getPrice().getAmount())
                 .setCreatedAt(paymentCompeteEvent.getPayment().getCreatedAt().toInstant())
                 .setPaymentStatus(PaymentStatus.valueOf(paymentCompeteEvent.getPayment().getPaymentStatus().name()))
@@ -56,15 +57,15 @@ public class PaymentMessagingDataMapper {
                 .build();
     }
 
-    public PaymentRequest paymentRequestAvroModelToPaymentRequest(PaymentRequestAvroModel requestAvroModel) {
+    public PaymentRequest paymentRequestAvroModelToPaymentRequest(PaymentRequestAvroModel paymentRequestAvroModel) {
         return PaymentRequest.builder()
-                .id(requestAvroModel.getId())
-                .sagaId(requestAvroModel.getSagaId())
-                .customerId(requestAvroModel.getCustomerId())
-                .orderId(requestAvroModel.getOrderId())
-                .price(requestAvroModel.getPrice())
-                .createdAt(requestAvroModel.getCreatedAt())
-                .paymentOrderStatus(PaymentOrderStatus.valueOf(requestAvroModel.getPaymentOrderStatus().name()))
+                .id(paymentRequestAvroModel.getId())
+                .sagaId(paymentRequestAvroModel.getSagaId())
+                .customerId(paymentRequestAvroModel.getCustomerId())
+                .orderId(paymentRequestAvroModel.getOrderId())
+                .price(paymentRequestAvroModel.getPrice())
+                .createdAt(paymentRequestAvroModel.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.valueOf(paymentRequestAvroModel.getPaymentOrderStatus().name()))
                 .build();
     }
 }

@@ -2,12 +2,11 @@ package in.mypractice.food.ordering.system.payment.messaging.kafka.publisher;
 
 import in.mypractice.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import in.mypractice.food.ordering.system.kafka.producer.service.KafkaProducer;
-import in.mypractice.food.ordering.system.order.avro.model.PaymentRequestAvroModel;
 import in.mypractice.food.ordering.system.order.avro.model.PaymentResponseAvroModel;
 import in.mypractice.food.ordering.system.payment.config.PaymentServiceConfigData;
 import in.mypractice.food.ordering.system.payment.messaging.mapper.PaymentMessagingDataMapper;
 import in.mypractice.food.ordering.system.payment.port.output.message.publisher.PaymentCompleteMessagePublisher;
-import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompeteEvent;
+import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompetedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class PaymentCompletedKafkaMessagePublisher implements PaymentCompleteMes
     private final KafkaMessageHelper messageHelper;
 
     @Override
-    public void publish(PaymentCompeteEvent domainEvent) {
+    public void publish(PaymentCompetedEvent domainEvent) {
         String orderId = domainEvent.getPayment().getOrderId().getValue().toString();
         log.info(String.format("Received payment order id : %s", orderId));
         try {

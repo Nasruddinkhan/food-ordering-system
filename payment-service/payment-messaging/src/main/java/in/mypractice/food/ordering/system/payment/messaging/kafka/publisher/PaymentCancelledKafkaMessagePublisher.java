@@ -6,9 +6,7 @@ import in.mypractice.food.ordering.system.order.avro.model.PaymentResponseAvroMo
 import in.mypractice.food.ordering.system.payment.config.PaymentServiceConfigData;
 import in.mypractice.food.ordering.system.payment.messaging.mapper.PaymentMessagingDataMapper;
 import in.mypractice.food.ordering.system.payment.port.output.message.publisher.PaymentCancelledMessagePublisher;
-import in.mypractice.food.ordering.system.payment.port.output.message.publisher.PaymentCompleteMessagePublisher;
 import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import in.mypractice.food.ordering.system.payment.service.domain.event.PaymentCompeteEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

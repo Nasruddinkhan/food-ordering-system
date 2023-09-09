@@ -31,7 +31,7 @@ public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<Re
             topics = "${order-service.restaurant-approval-response-topic-name}")
     public void receive(@Payload List<RestaurantApprovalResponseAvroModel> messages,
                         @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
-                        @Header(KafkaHeaders.PARTITION) List<Integer> partitions,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET ) List<Long> offsets) {
         messages.forEach(responseAvroModel -> {
             if (OrderApprovalStatus.APPROVED == responseAvroModel.getOrderApprovalStatus()) {

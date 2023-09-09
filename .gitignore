@@ -163,3 +163,5 @@ mvnw.cmd
 /order-service/order-dataaccess/target/*
 /order-service/order-container/target/**
 /order-service/order-application/target/*
+/.idea/
+/infrastructure/docker-compose/volumes/

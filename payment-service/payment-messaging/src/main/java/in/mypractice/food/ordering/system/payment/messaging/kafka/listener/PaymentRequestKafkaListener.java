@@ -28,7 +28,7 @@ public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequest
             topics = "${payment-service.payment-request-topic-name}")
     public void receive(@Payload List<PaymentRequestAvroModel> messages,
                         @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
-                        @Header(KafkaHeaders.PARTITION) List<Integer> partitions,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
 
         log.info(String.format("%s number of payment request with key %s, partitions %s offset %s",
