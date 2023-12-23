@@ -1,20 +1,22 @@
 version: '3.7'
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:${KAFKA_VERSION:-latest}
+    image: bitnami/zookeeper:${KAFKA_VERSION}
     hostname: zookeeper
     ports:
       - "2181:2181"
     environment:
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOOKEEPER_INIT_LIMIT: 5
-      ZOOKEEPER_SYNC_LIMIT: 2
-      ZOOKEEPER_SERVERS: zookeeper:2888:3888
-      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=ruok"
+      ZOO_SERVER_ID: 1
+      ZOO_PORT_NUMBER: 2181
+      ZOO_TICK_TIME: 2000
+      ZOO_INIT_LIMIT: 5
+      ZOO_SYNC_LIMIT: 2
+      ZOO_SERVERS: zookeeper:2888:3888
+      #ZOO_ENABLE_AUTH: "no"
+      ALLOW_ANONYMOUS_LOGIN: "yes"
     volumes:
-      - "./volumes/zookeeper/zk-data:/var/lib/zookeeper/data"
-      - "./volumes/zookeeper/zk-logs:/var/lib/zookeeper/log"
+      - "./volumes/zookeeper/zk-data:/bitnami/zookeeper/data"
+      - "./volumes/zookeeper/zk-logs:/bitnami/zookeeper/log"
+    #user: "1001:1001"  # Set to the UID:GID of the user that should own the files
     networks:
       - ${GLOBAL_NETWORK:-kafka}
